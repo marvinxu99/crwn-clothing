@@ -11,14 +11,16 @@ const FormInput = ({ handleChange, label, name, type, value, required }) => (
       value={value}
       required={required}
     />
-    {label ? (
-      <label 
-        className={`${
-            value.length ? 'shrink' : ''
-        } form-input-label`}
-      >
-        {label}
-      </label>)
+    {label ? 
+      (
+        <label 
+          className={`${
+              value.length ? 'shrink' : ''
+          } form-input-label`}
+        >
+          {label}
+        </label>
+      )
       : null
     }
   </div>
