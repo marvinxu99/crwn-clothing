@@ -16,7 +16,8 @@ class SignUp extends React.Component {
         displayName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        errorMessage: ''
       }
     }
   
@@ -26,7 +27,8 @@ class SignUp extends React.Component {
       const {displayName, email, password, confirmPassword} = this.state;
 
       if (password !== confirmPassword) {
-        alert("password don't match");
+        /*alert("passwords don't match"); */
+        this.setState({ errorMessage: "passwords don't match" });
         return;
       }
 
@@ -39,16 +41,21 @@ class SignUp extends React.Component {
           displayName: '',
           email: '',
           password: '',
-          confirmPassword: ''  
+          confirmPassword: '',
+          errorMessage: ''  
         })
       } catch (error) {
-        console.error(error);
+        this.setState({ errorMessage: error.message})
       }
     }
     
     handleChange = event => {
       const { value, name } = event.target; 
       this.setState({ [name]: value });
+      
+      if(this.state.errorMessage) {
+        this.setState({ errorMessage: '' });
+      }
     }
   
     render() {
@@ -92,6 +99,12 @@ class SignUp extends React.Component {
               required
               label='Confirm Password' 
             />
+            { /* Display error message */
+              this.state.errorMessage ?
+              <div className='error'>{this.state.errorMessage}</div>
+              :
+              null
+            }
             <div className='buttons'>
               <CustomButton type='submit'>Sign Up</CustomButton>
             </div>

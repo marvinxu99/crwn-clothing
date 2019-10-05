@@ -13,13 +13,19 @@ const Header = ({ currentUser }) => (
       <Logo className='logo' />
     </Link>
     <div className='options'>
+      <Link className='option' to='/'>
+        HOME
+      </Link>
+      
       <Link className='option' to='/shop'>
         SHOP
       </Link>
-      <Link className='option' to='/shop'>
+      
+      <Link className='option' to='/contact'>
         CONTACT
       </Link>
-      {
+      
+      { /* Logic for displaying SIGN OUT or SIGN IN */
         currentUser ?
         <div className='option' onClick={()=>auth.signOut()}>
           SIGN OUT
@@ -29,6 +35,7 @@ const Header = ({ currentUser }) => (
           SIGN IN
         </Link>
       }
+
     </div>
   </div>
 );
