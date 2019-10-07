@@ -49,14 +49,13 @@ class Directory extends React.Component {
     return (
       <div className='directory-menu'>
         {
-          /* Spread operator gives an errror!!!
-          {this.state.sections.map(({ id, ...otherSectionProps }) => (
+          /****
+          this.state.sections.map(({ id, title, size, imageUrl, linkUrl }) => (
+          <MenuItem key={id} title={title} size={size} imageUrl={imageUrl} linkUrl={linkUrl} />
+          )) ****/
+          this.state.sections.map(({ id, ...otherSectionProps }) => (
             <MenuItem key={id} {...otherSectionProps} />
           ))}
-          */       
-         this.state.sections.map(({ id, title, size, imageUrl, linkUrl }) => (
-            <MenuItem key={id} title={title} size={size} imageUrl={imageUrl} linkUrl={linkUrl} />
-          ))
         }            
       </div>
     );
