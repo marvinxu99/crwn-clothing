@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { clearItemFromCart, removeItem, addItem } from '../../redux/cart/cart.actions';
 
-import { } from '../../redux/cart/cart.actions';
-
 import './checkout-item.styles.scss';
 
 const CheckoutItem = ({ cartItem, clearItem, removeItem, addItem }) => {
@@ -11,7 +9,7 @@ const CheckoutItem = ({ cartItem, clearItem, removeItem, addItem }) => {
   return(
     <div className='checkout-item'>
       <div className='image-container'>
-        <img src={imageUrl} alt='item1' />
+        <img src={ imageUrl } alt='item1' />
       </div>
       <div className='name'>{ name }</div>
       <div className='quantity'>
@@ -19,10 +17,10 @@ const CheckoutItem = ({ cartItem, clearItem, removeItem, addItem }) => {
         <span className='value'>{ quantity }</span>
         <span className='arrow' onClick={ () => addItem(cartItem) }>&#10095;</span>
       </div>
-      <div className='price'>{ price }</div>
-      <div className='remove-button' 
-        onClick={ () => clearItem(cartItem) }
-      >&#10005;</div>
+      <div className='price'>${ price }</div>
+      <div className='remove-button' onClick={ () => clearItem(cartItem) }
+        >&#10005;
+      </div>
     </div>
   );
 };
