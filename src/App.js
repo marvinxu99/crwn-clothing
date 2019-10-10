@@ -59,7 +59,18 @@ class App extends React.Component {
             render={ () => currentUser ? 
               (<Redirect to='/' />) : (<SignInAndSignUpPage />) } 
           />
+          <Route 
+            path='/external' 
+            component={() => window.location = 'https://external.com/path'}
+          />          
         </Switch>
+        <a className='test'
+          href='https://external.com/path' 
+          target='_blank' 
+          rel='noopener noreferrer'
+        >
+          Regular Anchor tags work great
+        </a>
       </div>
     );
   }
