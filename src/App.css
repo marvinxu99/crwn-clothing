@@ -12,6 +12,11 @@ a {
     color: black;
 }
 
+.winter-beautiful {
+    display:flex;
+    justify-content: flex-end;
+}
+
 * {
     box-sizing: border-box;
 }

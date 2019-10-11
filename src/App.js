@@ -12,6 +12,7 @@ import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import ContactPage from './pages/contact/contact.component';
 import CheckoutPage from './pages/checkout/checkout.component';
+import PageNotFound from './pages/page-not-found/page-not-found.component';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser} from './redux/user/user.actions';
@@ -62,15 +63,15 @@ class App extends React.Component {
           <Route 
             path='/external' 
             component={() => window.location = 'https://external.com/path'}
-          />          
+          />     
+          <Route component={PageNotFound} />    
         </Switch>
-        <a className='test'
-          href='https://external.com/path' 
-          target='_blank' 
-          rel='noopener noreferrer'
-        >
-          Regular Anchor tags work great
-        </a>
+        <div className='winter-beautiful'>
+          <a href='http://www.google.ca' target='_blank' rel='noopener noreferrer'>
+            Winter is beautiful. <br />
+            Regular anchor tags work great.
+          </a>
+        </div>
       </div>
     );
   }
