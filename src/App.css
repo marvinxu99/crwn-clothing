@@ -13,7 +13,8 @@ a {
 }
 
 .winter-beautiful {
-    display:flex;
+    padding: 5px 5px;
+    display: flex;
     justify-content: flex-end;
 }
 

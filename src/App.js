@@ -18,6 +18,8 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser} from './redux/user/user.actions';
 import { selectUserCurrentUser } from './redux/user/user.selectors';
 
+import { ReactComponent as Logo } from './assets/images/winter-resized.svg';
+
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -67,6 +69,7 @@ class App extends React.Component {
           <Route component={PageNotFound} />    
         </Switch>
         <div className='winter-beautiful'>
+          <Logo />
           <a href='http://www.google.ca' target='_blank' rel='noopener noreferrer'>
             Winter is beautiful. <br />
             Regular anchor tags work great.

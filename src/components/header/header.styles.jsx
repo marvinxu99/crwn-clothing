@@ -8,7 +8,7 @@ const OptionContainerStyles = css`
 `;
 
 export const HeaderContainer = styled.div`
-  height: 70px;
+  height: 100px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@ export const LogoContainer = styled(Link)`
   width: 120px;
   padding: 5px;
   display: flex;
-  flex-direction: column;      
+  flex-direction: column;
 `;
 
 export const OptionsContainer = styled.div`
@@ -37,4 +37,9 @@ export const OptionLink = styled(Link)`
 
 export const OptionDiv = styled.div`
   ${ OptionContainerStyles }
+`;
+
+export const LogoImg = styled.img`
+  height: 64px;
+  width: 64px;
 `;
