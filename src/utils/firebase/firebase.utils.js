@@ -7,6 +7,8 @@ import {
     signOut,
     signInWithRedirect, 
     signInWithPopup,
+    signInWithEmailAndPassword,
+
     GoogleAuthProvider, 
     FacebookAuthProvider,
     GithubAuthProvider,
@@ -84,4 +86,24 @@ export const createAuthUserWithEmailPassword = async (email, password) => {
   } else {
     return false;
   }
+}
+
+export const signInWithFirebaseEmailAndPassword = async (email, password) => {
+  if (email && password) {
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      
+      console.log(response); 
+      
+      return response;
+
+    } catch(error) {
+      console.log(error);
+    }
+    
+
+  } else {
+    return false;
+  }
+  
 }

@@ -1,49 +1,13 @@
-import { useEffect } from 'react';
-import { getRedirectResult } from 'firebase/auth';
-
 import SignUpForm from '../../components/sign-up-form/sign-up-form.component';
-
-
-import { 
-  auth,
-  signInWithGithubPopup,
-  signInWithGooglePopup,
-  signInWithGoogleRedirect,
-  createUserDocumentFromAuth,
-} from '../../utils/firebase/firebase.utils'; 
+import SignInForm from '../../components/sign-in-form/sign-in-form.component';
 
 
 const SignIn = () => {
 
-  useEffect(() => {
-    async function getGoogleRedirectResult() {
-      const response = await getRedirectResult(auth);
-      if(response) {
-        await createUserDocumentFromAuth(response.user);
-      }
-    };
-    getGoogleRedirectResult();
-  }, []);
-
-  async function logGoogleUser() {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-  }
-
-  // https://firebase.google.com/docs/auth/web/github-auth
-  async function logGithubUser() {
-    const { user } = await signInWithGithubPopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-  }
-
-  return(
+  return (
     <div>
       <h1>Sign In Page</h1>
-      <button onClick={logGoogleUser}>Sign in with Google Popup</button>
-      <button onClick={signInWithGoogleRedirect}>Sign in with Google Redirect</button>
-
-      <button onClick={logGithubUser}>Sign in with Github Popup</button>
-
+      <SignInForm />
       <SignUpForm />
     </div>
   )
