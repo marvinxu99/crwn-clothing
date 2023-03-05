@@ -10,6 +10,7 @@ import {
     GoogleAuthProvider, 
     FacebookAuthProvider,
     GithubAuthProvider,
+    createUserWithEmailAndPassword,
 } from 'firebase/auth';
 
 import {
@@ -74,4 +75,12 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     }
 
     return userDocRef;
+}
+
+export const createAuthUserWithEmailPassword = async (email, password) => {
+  if (email && password) {
+    return await createUserWithEmailAndPassword(auth, email, password);
+  } else {
+    return false;
+  }
 }
