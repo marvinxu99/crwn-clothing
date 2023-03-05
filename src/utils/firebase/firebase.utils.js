@@ -4,9 +4,12 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { 
     getAuth, 
+    signOut,
     signInWithRedirect, 
     signInWithPopup,
     GoogleAuthProvider, 
+    FacebookAuthProvider,
+    GithubAuthProvider,
 } from 'firebase/auth';
 
 import {
@@ -35,11 +38,16 @@ googleProvider.setCustomParameters({
     prompt: "select_account",
 });
 
+const githubProvider = new GithubAuthProvider();
+
 export const auth = getAuth();
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
- 
+
+export const signInWithGithubPopup = () => signInWithPopup(auth, githubProvider);
+
+
 export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth) => {

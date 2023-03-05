@@ -4,6 +4,7 @@ import { getRedirectResult } from 'firebase/auth';
 
 import { 
   auth,
+  signInWithGithubPopup,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
   createUserDocumentFromAuth,
@@ -16,7 +17,7 @@ const SignIn = () => {
     async function getGoogleRedirectResult() {
       const response = await getRedirectResult(auth);
       if(response) {
-        const userDocRef = await createUserDocumentFromAuth(response.user);
+        await createUserDocumentFromAuth(response.user);
       }
     };
     getGoogleRedirectResult();
@@ -27,11 +28,19 @@ const SignIn = () => {
     const userDocRef = await createUserDocumentFromAuth(user);
   }
 
+  // https://firebase.google.com/docs/auth/web/github-auth
+  async function logGithubUser() {
+    const { user } = await signInWithGithubPopup();
+    const userDocRef = await createUserDocumentFromAuth(user);
+  }
+
   return(
     <div>
       <h1>Sign In Page</h1>
       <button onClick={logGoogleUser}>Sign in with Google Popup</button>
       <button onClick={signInWithGoogleRedirect}>Sign in with Google Redirect</button>
+
+      <button onClick={logGithubUser}>Sign in with Github Popup</button>
     </div>
   )
 }
