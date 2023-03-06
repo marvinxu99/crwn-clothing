@@ -88,7 +88,7 @@ export const createAuthUserWithEmailPassword = async (email, password) => {
   }
 }
 
-export const signInWithFirebaseEmailAndPassword = async (email, password) => {
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (email && password) {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
@@ -100,8 +100,6 @@ export const signInWithFirebaseEmailAndPassword = async (email, password) => {
     } catch(error) {
       console.log(error);
     }
-    
-
   } else {
     return false;
   }

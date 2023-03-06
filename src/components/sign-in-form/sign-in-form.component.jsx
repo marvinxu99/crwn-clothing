@@ -8,7 +8,7 @@ import {
   signInWithGooglePopup,
   signInWithGoogleRedirect,
   createUserDocumentFromAuth,
-  signInWithFirebaseEmailAndPassword,
+  signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase/firebase.utils'; 
 
 
@@ -37,13 +37,18 @@ const SignInForm = () => {
     getGoogleRedirectResult();
   }, []);
 
-  async function logGoogleUser() {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+  const signInWithGoogle = async () => {
+    try {
+      const { user } = await signInWithGooglePopup();
+      console.log(user);
+      await createUserDocumentFromAuth(user);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // https://firebase.google.com/docs/auth/web/github-auth
-  async function logGithubUser() {
+  const logGithubUser = async () => {
     try {
       const { user } = await signInWithGithubPopup();
       await createUserDocumentFromAuth(user);  
@@ -64,10 +69,26 @@ const SignInForm = () => {
   const handleSummit = async (event) => {
     event.preventDefault();
 
-    const { user } = await signInWithFirebaseEmailAndPassword(email, password);
-    console.log(user.accessToken);
+    try {
+      const { user } = await signInAuthUserWithEmailAndPassword(email, password);
+      console.log(user.accessToken);
 
-    resetFormFields();
+      resetFormFields();  
+    } catch (error) {
+      switch (error.code) {
+        case 'auth/wrong-password':
+          alert("Incorrect password for email");          
+          break;
+
+        case 'auth/user-not-found':
+          alert("Incorrect email address");          
+          break;
+          
+        default:
+          alert("Incorrect password or email");          
+          break;
+      }
+    }
   }
 
   return (
@@ -77,14 +98,21 @@ const SignInForm = () => {
       <form onSubmit={ handleSummit }>
         <FormInput label='Email' type='email' required onChange={handleChange} name='email' value={email}/>
         <FormInput label='Password ' type='password' required onChange={handleChange} name='password' value={password} />
-        <Button type='submit'>Sign In</Button>
+        <div className='buttons-container'>
+          <Button type='submit'>Sign In</Button>
+          <Button type='button' buttonType='google' onClick={signInWithGoogle}>Sign in with Google</Button>
+        </div>
       </form>
+      { /*
       <div className='oauth-button-container'>
-        <Button buttonType='google' onClick={logGoogleUser}>Sign in with Google Popup</Button>
-        <Button buttonType='google' onClick={signInWithGoogleRedirect}>Sign in with Google Redirect</Button>
-        <Button buttonType='google' onClick={logGithubUser}>Sign in with Github Popup</Button>
+        <Button type='button' buttonType='google' onClick={signInWithGoogleRedirect}>Sign In with Google Redirect </Button>
       </div>
+      <div className='oauth-button-container'>
+        <Button type='button' buttonType='google' onClick={logGithubUser}>Sign In With Github</Button>
+      </div>
+      */}
     </div>
+
   )
 }
 
