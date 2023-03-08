@@ -4,15 +4,7 @@ import Home from "./routes/home/home.components";
 import Navigation from "./routes/navigation/navigation.component";
 import PageNotFound from "./routes/page-not-found/page-not-found.component";
 import Authentication from "./routes/authentication/authentication.component";
-
-
-const Shop = () => {
-  return (
-    <div>
-      <div>I am the shop page</div>
-    </div>
-  )
-}
+import Shop from "./routes/shop/shop.component";
 
 const App = () => {
   return (
