@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { ProductsContext } from '../../contexts/products.context';
 import ProductCard from '../../components/product-card/product-card.component';
 import './shop.styles.scss';
+import CategoryItem from '../../components/category-item/category-item.component';
 
 
 const Shop = () => {
@@ -13,6 +14,7 @@ const Shop = () => {
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />          
       ))}
+      <CategoryItem category={products}></CategoryItem>
     </div>
   );
 }
